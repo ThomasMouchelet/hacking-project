@@ -46,15 +46,44 @@ class ChallengeFixtures extends Fixture
             'name' => "F12",
             'answer' => "slacker",
             'description' => "Vous tenez le coup, TOI ? 
-<br><br>
-Ce n'est pourtant pas si compliqué…
-<br><br> 
-Restons simple avant de passer à l'étape 5, je pense que ça se passe de commentaire.
-
-<!-- TODO : faire en sorte que l'étudiant trouve le commentaire >> slacker -->
-",
+                <br><br>
+                Ce n'est pourtant pas si compliqué…
+                <br><br> 
+                Restons simple avant de passer à l'étape 5, je pense que ça se passe de commentaire.
+                <!-- TODO : faire en sorte que l'étudiant trouve le commentaire >> slacker -->
+            ",
             'orderChallenge' => "3",
             'type' => 'student'
+        ],
+        'challenge4' => [
+            'name' => "Test oculaire",
+            'answer' => "#00ff00",
+            'description' => "
+                Eh bien, nous pouvons enfin commencer {{team.name}} !
+                <br><br>
+                Un premier test facile, pour identifier qui sera le leader de cette équipe :
+                <br><br>
+                “Vous me voyez depuis le début, d'ailleurs je suis plutôt voyant. A vous de me trouver et de me rentrer Hexa-ctement”
+
+            ",
+            'orderChallenge' => "4",
+            'type' => 'team'
+        ],
+        'challenge5' => [
+            'name' => "Rain Man",
+            'answer' => "45",
+            'description' => "
+                Vous semblez prendre du bon temps, vous avez pris des couleurs dirait-on.
+                <br><br>
+                Passons au calcul, pouvez-vous me résoudre cette équation :
+                <br><br>
+
+                (le board + war room)² x (la régie + le lab)<br>
+                _________________________________<br>
+                le board + war room<br>
+            ",
+            'orderChallenge' => "5",
+            'type' => 'team'
         ],
     ];
 

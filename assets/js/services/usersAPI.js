@@ -49,7 +49,13 @@ function getStudentTeamID() {
     }
 }
 
-
+function isAdmin() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { roles } = jwtDecode(token);
+        return roles.includes("ROLE_ADMIN") ? true : false;
+    }
+}
 
 export default {
     findActiveChallenge,
@@ -57,5 +63,6 @@ export default {
     getType,
     getTeamID,
     getStudentID,
-    getStudentTeamID
+    getStudentTeamID,
+    isAdmin
 };

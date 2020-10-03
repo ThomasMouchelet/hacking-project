@@ -3,20 +3,20 @@
 namespace App\DataFixtures;
 
 use App\Entity\Team;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TeamFixtures extends Fixture
 {
-    const TEAMS = [
-        'team1' => [
-            'name' => "team1"
-        ],
-        'team2' => [
-            'name' => "team2"
-        ],
-    ];
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
 
     public function getDependencies()
     {
@@ -57,6 +57,15 @@ class TeamFixtures extends Fixture
             $team->setSecretKey($teamSecret);
 
             $manager->persist($team);
+
+            $user = new User();
+            $hash = $this->encoder->encodePassword($user, "bootstrap");
+
+            $user->setUsername($teamName)
+                ->setPassword($hash)
+                ->setTeam($team);
+
+            $manager->persist($user);
         }
 
         $manager->flush();

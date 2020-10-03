@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import LoginPage from "./pages/LoginPage";
 import CreateTeamPage from "./pages/CreateTeamPage";
 import FinalPage from "./pages/FinalPage";
+import AdminPage from "./pages/AdminPage";
 import AuthAPI from "./services/authAPI";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
@@ -40,7 +41,6 @@ const App = () => {
                             render={(props) => <LoginPage {...props} />}
                         />
                     }
-
                     <PrivateRouter
                         path="/challenge"
                         component={ChallengePage}
@@ -52,6 +52,10 @@ const App = () => {
                     <PrivateRouter
                         path="/final_page"
                         component={FinalPage}
+                    />
+                    <PrivateRouter
+                        path="/admin"
+                        component={AdminPage}
                     />
                 </Switch>
             </HashRouter>

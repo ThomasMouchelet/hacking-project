@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import AuthAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import usersAPI from "../services/usersAPI";
 
 const LoginPage = () => {
     const history = useHistory();
@@ -22,7 +23,11 @@ const LoginPage = () => {
         try {
             await AuthAPI.authenticate(credentials);
             setIsAuthenticated(true);
-            history.replace("challenge");
+            if (usersAPI.isAdmin()) {
+                history.replace("admin");
+            } else {
+                history.replace("challenge");
+            }
         } catch (error) {
             console.log(error);
         }
