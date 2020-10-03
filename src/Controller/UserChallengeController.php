@@ -9,8 +9,6 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 
-
-
 class UserChallengeController extends AbstractController
 {
     private $security;
@@ -27,11 +25,26 @@ class UserChallengeController extends AbstractController
     {
         if ($request->isMethod('GET')) {
             $userConnect = $this->security->getUser();
-            $count = count($userConnect->getValidChallenges()->toArray());
+            // S'il s'agit d'une team
+            if (!is_null($userConnect->getTeam())) {
+                $type = "team";
+                $countChallenge = count($userConnect->getTeam()->getValidChallenges()->toArray());
+            }
+            // S'il s'agit d'un étudiant
+            if (!is_null($userConnect->getStudent())) {
+                $type = "student";
+                $countChallenge = count($userConnect->getStudent()->getValidChallenges()->toArray());
+            }
 
-            $activeChallenge = $challengeRipo->findOneBy(["orderChallenge" => $count + 1]);
+            $totalCountChallenge = count($challengeRipo->findBy(['type' => $type]));
 
-            return $activeChallenge->getId();
+            if ($countChallenge >= $totalCountChallenge) {
+                return 'complete';
+            } else {
+                $listChallenge = $challengeRipo->findBy(["type" => $type]);
+
+                return $listChallenge[$countChallenge]->getId();
+            }
         }
     }
 }

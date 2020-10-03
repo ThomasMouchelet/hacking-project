@@ -3,21 +3,22 @@ import usersAPI from "../services/usersAPI";
 import challengesAPI from "../services/challengesAPI";
 import validChallengesAPI from "../services/validChallengesAPI";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { useHistory } from "react-router-dom";
 
 const ChallengePage = () => {
+    const history = useHistory();
     const [challenge, setChallenge] = useState({
         id: "",
         name: "",
         description: "",
-    })
-    const [answer, setAnswer] = useState("")
-    const [userAnswer, setUserAnswer] = useState("")
-    const [disabled, setDisabled] = useState(true)
-    const [isLoading, setIsLoading] = useState(false)
+    });
+    const [answer, setAnswer] = useState("");
+    const [userAnswer, setUserAnswer] = useState("");
+    const [disabled, setDisabled] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         getActiveChallenge()
-
         if (isLoading) {
             if (userAnswer === answer) {
                 setDisabled(false)
@@ -30,15 +31,23 @@ const ChallengePage = () => {
     const getActiveChallenge = async () => {
         try {
             const id = await usersAPI.findActiveChallenge()
-            const challenge = await challengesAPI.findOne(id);
 
-            setChallenge({
-                id: challenge.id,
-                name: challenge.name,
-                description: challenge.description,
-            })
-            setAnswer(challenge.answer);
-            setIsLoading(true);
+            if (id === "complete") {
+                const userType = usersAPI.getType();
+                const redirectPage = userType === "student" ? "create_team" : "final_page"
+                history.replace(redirectPage);
+            } else {
+                const challenge = await challengesAPI.findOne(id);
+
+                setChallenge({
+                    id: challenge.id,
+                    name: challenge.name,
+                    description: challenge.description,
+                })
+                setAnswer(challenge.answer);
+                setIsLoading(true);
+            }
+
         } catch (error) {
             console.log(error)
         }

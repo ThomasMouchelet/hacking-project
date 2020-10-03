@@ -22,7 +22,8 @@ class ChallengeFixtures extends Fixture
                                 Voici un indice, mais ne vous y habituez pas.
                                 <br><br>
                                 <em>“Le sombre ciel du studio photo vous fera faire la connexion”</em>",
-            'orderChallenge' => "1"
+            'orderChallenge' => "1",
+            'type' => 'user'
         ],
         'challenge2' => [
             'name' => "Social engineering",
@@ -38,7 +39,8 @@ class ChallengeFixtures extends Fixture
                                     </audio>
                                 <br><br>
                                 Vous avez trouvé l'information demandée ? Rentrez-la ci-dessous.",
-            'orderChallenge' => "2"
+            'orderChallenge' => "2",
+            'type' => 'user'
         ],
         'challenge3' => [
             'name' => "F12",
@@ -51,7 +53,8 @@ Restons simple avant de passer à l'étape 5, je pense que ça se passe de comme
 
 <!-- TODO : faire en sorte que l'étudiant trouve le commentaire >> slacker -->
 ",
-            'orderChallenge' => "3"
+            'orderChallenge' => "3",
+            'type' => 'user'
         ],
     ];
 
@@ -62,6 +65,7 @@ Restons simple avant de passer à l'étape 5, je pense que ça se passe de comme
             $challenge->setName($data["name"])
                 ->setAnswer($data["answer"])
                 ->setDescription($data["description"])
+                ->setType($data['type'])
                 ->setOrderChallenge($data['orderChallenge']);
 
             $this->addReference('challenge' . $data['orderChallenge'], $challenge);

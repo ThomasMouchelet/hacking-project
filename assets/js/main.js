@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import LoginPage from "./pages/LoginPage";
+import CreateTeamPage from "./pages/CreateTeamPage";
+import FinalPage from "./pages/FinalPage";
 import AuthAPI from "./services/authAPI";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
@@ -19,7 +21,7 @@ const App = () => {
     const handleLogout = () => {
         AuthAPI.logout();
         setIsAuthenticated(false);
-        history.push("/login");
+        history.replace("/login");
     };
 
     return (
@@ -42,6 +44,14 @@ const App = () => {
                     <PrivateRouter
                         path="/challenge"
                         component={ChallengePage}
+                    />
+                    <PrivateRouter
+                        path="/create_team"
+                        component={CreateTeamPage}
+                    />
+                    <PrivateRouter
+                        path="/final_page"
+                        component={FinalPage}
                     />
                 </Switch>
             </HashRouter>

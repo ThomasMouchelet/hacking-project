@@ -2,17 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\TeamRepository;
+use App\Repository\StudentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
- * @ORM\Entity(repositoryClass=TeamRepository::class)
+ * @ORM\Entity(repositoryClass=StudentRepository::class)
  * @ApiResource
  */
-class Team
+class Student
 {
     /**
      * @ORM\Id
@@ -22,29 +22,33 @@ class Team
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
-
-    /**
-     * @ORM\OneToMany(targetEntity=ValidChallenge::class, mappedBy="team")
-     */
-    private $validChallenges;
-
-    /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="team", cascade={"persist", "remove"})
-     */
-    private $user;
+    private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $secretKey;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ValidChallenge::class, mappedBy="student")
+     */
+    private $validChallenges;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="student", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->validChallenges = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,18 +56,41 @@ class Team
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->name;
+        return $this->firstName;
     }
 
-    public function setName(string $name): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getSecretKey(): ?string
+    {
+        return $this->secretKey;
+    }
+
+    public function setSecretKey(string $secretKey): self
+    {
+        $this->secretKey = $secretKey;
+
+        return $this;
+    }
 
     /**
      * @return Collection|ValidChallenge[]
@@ -77,7 +104,7 @@ class Team
     {
         if (!$this->validChallenges->contains($validChallenge)) {
             $this->validChallenges[] = $validChallenge;
-            $validChallenge->setTeam($this);
+            $validChallenge->setStudent($this);
         }
 
         return $this;
@@ -88,8 +115,8 @@ class Team
         if ($this->validChallenges->contains($validChallenge)) {
             $this->validChallenges->removeElement($validChallenge);
             // set the owning side to null (unless already changed)
-            if ($validChallenge->getTeam() === $this) {
-                $validChallenge->setTeam(null);
+            if ($validChallenge->getStudent() === $this) {
+                $validChallenge->setStudent(null);
             }
         }
 
@@ -106,22 +133,10 @@ class Team
         $this->user = $user;
 
         // set (or unset) the owning side of the relation if necessary
-        $newTeam = null === $user ? null : $this;
-        if ($user->getTeam() !== $newTeam) {
-            $user->setTeam($newTeam);
+        $newStudent = null === $user ? null : $this;
+        if ($user->getStudent() !== $newStudent) {
+            $user->setStudent($newStudent);
         }
-
-        return $this;
-    }
-
-    public function getSecretKey(): ?string
-    {
-        return $this->secretKey;
-    }
-
-    public function setSecretKey(?string $secretKey): self
-    {
-        $this->secretKey = $secretKey;
 
         return $this;
     }

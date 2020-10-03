@@ -8,9 +8,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=ValidChallengeRepository::class)
- * @ApiResource(
- *  itemOperations={"GET","POST"}
- * )
+ * @ApiResource
  */
 class ValidChallenge
 {
@@ -43,6 +41,11 @@ class ValidChallenge
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="validChallenges")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="validChallenges")
+     */
+    private $student;
 
     public function getId(): ?int
     {
@@ -94,6 +97,18 @@ class ValidChallenge
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStudent(): ?Student
+    {
+        return $this->student;
+    }
+
+    public function setStudent(?Student $student): self
+    {
+        $this->student = $student;
 
         return $this;
     }

@@ -17,16 +17,34 @@ function getUserID() {
     }
 }
 
-function getUserTeam() {
+function getStudentID() {
     const token = window.localStorage.getItem("authToken");
     if (token) {
-        const { team } = jwtDecode(token);
-        return team;
+        const { studentID } = jwtDecode(token);
+        return studentID;
+    }
+}
+function getTeamID() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { teamID } = jwtDecode(token);
+        return teamID;
+    }
+}
+
+function getType() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { studentID } = jwtDecode(token);
+        const type = studentID ? "student" : "team"
+        return type;
     }
 }
 
 export default {
     findActiveChallenge,
     getUserID,
-    getUserTeam,
+    getType,
+    getTeamID,
+    getStudentID
 };

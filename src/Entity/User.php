@@ -55,36 +55,14 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"users_read"})
-     */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"users_read"})
-     */
-    private $lastName;
-
-    /**
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
-     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="users")
-     * @Groups({"users_read"})
+     * @ORM\OneToOne(targetEntity=Team::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $team;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"users_read"})
+     * @ORM\OneToOne(targetEntity=Student::class, inversedBy="user", cascade={"persist", "remove"})
      */
-    private $secretKey;
-
-    /**
-     * @ORM\OneToMany(targetEntity=ValidChallenge::class, mappedBy="user")
-     * @ORM\OrderBy({"timeToComplete" = "DESC"})
-     * @Groups({"users_read"})
-     */
-    private $validChallenges;
+    private $student;
 
     public function __construct()
     {
@@ -164,30 +142,6 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
     public function getTeam(): ?Team
     {
         return $this->team;
@@ -200,45 +154,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getSecretKey(): ?string
+    public function getStudent(): ?Student
     {
-        return $this->secretKey;
+        return $this->student;
     }
 
-    public function setSecretKey(string $secretKey): self
+    public function setStudent(?Student $student): self
     {
-        $this->secretKey = $secretKey;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ValidChallenge[]
-     */
-    public function getValidChallenges(): Collection
-    {
-        return $this->validChallenges;
-    }
-
-    public function addValidChallenge(ValidChallenge $validChallenge): self
-    {
-        if (!$this->validChallenges->contains($validChallenge)) {
-            $this->validChallenges[] = $validChallenge;
-            $validChallenge->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeValidChallenge(ValidChallenge $validChallenge): self
-    {
-        if ($this->validChallenges->contains($validChallenge)) {
-            $this->validChallenges->removeElement($validChallenge);
-            // set the owning side to null (unless already changed)
-            if ($validChallenge->getUser() === $this) {
-                $validChallenge->setUser(null);
-            }
-        }
+        $this->student = $student;
 
         return $this;
     }

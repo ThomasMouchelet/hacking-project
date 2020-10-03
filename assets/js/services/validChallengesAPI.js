@@ -4,28 +4,28 @@ import usersAPI from "./usersAPI";
 
 function createValidChallenge(challengeID) {
 
-    const isTeam = usersAPI.getUserTeam() === undefined ? false : true
+    const type = usersAPI.getType();
 
     let credentials = {
         challenge: `api/challenges/${challengeID}`,
         timeToComplete: new Date(),
     }
 
-    if (isTeam) {
+    if (type === "student") {
         credentials = {
             ...credentials,
-            team: `api/teams/${usersAPI.getUserTeam()}`,
+            student: `api/students/${usersAPI.getStudentID()}`,
         }
-    } else {
+    }
+    if (type === "team") {
         credentials = {
             ...credentials,
-            user: `api/users/${usersAPI.getUserID()}`,
+            team: `api/teams/${usersAPI.getTeamID()}`,
         }
     }
 
     return axios.post(`${VALID_CHALLENGE}`, credentials)
         .then(resp => resp)
-        .catch(erre => console.log(error));
 }
 
 export default {
