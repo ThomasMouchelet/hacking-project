@@ -42,6 +42,7 @@ class TeamFixtures extends Fixture
                     $student = $this->getReference("student" . $selectedStudent);
                     array_push($studentWithTeam, $selectedStudent);
                     array_push($studentsInTeam, $student);
+                    $team->addStudent($student);
                 }
             }
 

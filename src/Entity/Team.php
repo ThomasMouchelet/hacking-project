@@ -41,10 +41,16 @@ class Team
      */
     private $secretKey;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Student::class, mappedBy="team")
+     */
+    private $students;
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->students = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,6 +128,37 @@ class Team
     public function setSecretKey(?string $secretKey): self
     {
         $this->secretKey = $secretKey;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Student[]
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): self
+    {
+        if (!$this->students->contains($student)) {
+            $this->students[] = $student;
+            $student->setTeam($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): self
+    {
+        if ($this->students->contains($student)) {
+            $this->students->removeElement($student);
+            // set the owning side to null (unless already changed)
+            if ($student->getTeam() === $this) {
+                $student->setTeam(null);
+            }
+        }
 
         return $this;
     }

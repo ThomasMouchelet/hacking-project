@@ -46,6 +46,11 @@ class Student
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="students")
+     */
+    private $team;
+
     public function __construct()
     {
         $this->validChallenges = new ArrayCollection();
@@ -137,6 +142,18 @@ class Student
         if ($user->getStudent() !== $newStudent) {
             $user->setStudent($newStudent);
         }
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }
