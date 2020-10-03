@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "axios": "^0.20.0",
+        "firebase": "^7.22.0",
         "jwt-decode": "^3.0.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
