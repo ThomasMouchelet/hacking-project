@@ -10,6 +10,7 @@ const CreateTeamPage = () => {
         code3: ""
     })
     const [isLoading, setIsLoading] = useState(false)
+    const [winMode, setWinMode] = useState(false)
 
     useEffect(() => {
         const studentTeamID = userAPI.getStudentTeamID()
@@ -20,7 +21,7 @@ const CreateTeamPage = () => {
                 totalUserSecretKeyValue += userSecretKeyValue[index]
             })
             if (totalUserSecretKeyValue === studentTeam.secretKey) {
-                console.log('WIN')
+                setWinMode(true);
             }
         }
     }, [userSecretKeyValue])
@@ -60,7 +61,13 @@ const CreateTeamPage = () => {
         }
     };
 
+
+    const winModView = (
+        <div>WIN</div>
+    )
+
     return (
+
         <div>
             <h1>Create Team</h1>
             <form>
@@ -68,6 +75,7 @@ const CreateTeamPage = () => {
                 <input type="text" onChange={handleChange} name="code2" />
                 <input type="text" onChange={handleChange} name="code3" />
             </form>
+            {winMode && winModView}
         </div>
     )
 }
