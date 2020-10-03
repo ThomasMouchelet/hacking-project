@@ -187,7 +187,7 @@ class StudentFixtures extends Fixture
             $student = new Student();
             $student->setFirstName($data["firstName"])
                 ->setLastName($data["lastName"])
-                ->setSecretKey(substr(uniqid(rand(), true), 5, 5));
+                ->setSecretKey(substr(uniqid(rand(), true), 5, 3));
 
             $this->addReference($studentRef, $student);
             $manager->persist($student);

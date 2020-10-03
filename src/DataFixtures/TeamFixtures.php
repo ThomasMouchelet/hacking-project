@@ -51,7 +51,7 @@ class TeamFixtures extends Fixture
             foreach ($studentsInTeam as $key => $student) {
                 $firsName = substr(strtolower(str_replace(" ", "", $student->getFirstName())), 0, 3);
                 $teamName .= $firsName;
-                $teamSecret .= substr($studentsInTeam[0]->getSecretKey(), 0, 3);
+                $teamSecret .= substr($student->getSecretKey(), 0, 3);
             };
             $team->setName($teamName);
             $team->setSecretKey($teamSecret);

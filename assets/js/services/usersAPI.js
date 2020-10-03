@@ -41,10 +41,21 @@ function getType() {
     }
 }
 
+function getStudentTeamID() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { studentTeamID } = jwtDecode(token);
+        return studentTeamID;
+    }
+}
+
+
+
 export default {
     findActiveChallenge,
     getUserID,
     getType,
     getTeamID,
-    getStudentID
+    getStudentID,
+    getStudentTeamID
 };

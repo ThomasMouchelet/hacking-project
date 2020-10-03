@@ -23,7 +23,7 @@ class ChallengeFixtures extends Fixture
                                 <br><br>
                                 <em>“Le sombre ciel du studio photo vous fera faire la connexion”</em>",
             'orderChallenge' => "1",
-            'type' => 'user'
+            'type' => 'student'
         ],
         'challenge2' => [
             'name' => "Social engineering",
@@ -40,7 +40,7 @@ class ChallengeFixtures extends Fixture
                                 <br><br>
                                 Vous avez trouvé l'information demandée ? Rentrez-la ci-dessous.",
             'orderChallenge' => "2",
-            'type' => 'user'
+            'type' => 'student'
         ],
         'challenge3' => [
             'name' => "F12",
@@ -54,7 +54,7 @@ Restons simple avant de passer à l'étape 5, je pense que ça se passe de comme
 <!-- TODO : faire en sorte que l'étudiant trouve le commentaire >> slacker -->
 ",
             'orderChallenge' => "3",
-            'type' => 'user'
+            'type' => 'student'
         ],
     ];
 

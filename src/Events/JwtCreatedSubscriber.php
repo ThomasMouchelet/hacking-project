@@ -23,6 +23,7 @@ class JwtCreatedSubscriber
             $data['firstName'] = $user->getStudent()->getFirstName();
             $data['lastName'] = $user->getStudent()->getLastName();
             $data['secretKey'] = $user->getStudent()->getSecretKey();
+            $data['studentTeamID'] = $user->getStudent()->getTeam()->getId();
         }
 
         $data['id'] = $user->getId();
