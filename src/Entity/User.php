@@ -67,6 +67,7 @@ class User implements UserInterface
     private $lastName;
 
     /**
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="users")
      * @Groups({"users_read"})
      */

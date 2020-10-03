@@ -8,7 +8,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=ValidChallengeRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *  itemOperations={"GET","POST"}
+ * )
  */
 class ValidChallenge
 {
@@ -20,6 +22,7 @@ class ValidChallenge
     private $id;
 
     /**
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="validChallenges")
      */
     private $team;
@@ -36,6 +39,7 @@ class ValidChallenge
     private $challenge;
 
     /**
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="validChallenges")
      */
     private $user;

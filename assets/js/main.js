@@ -14,7 +14,7 @@ const App = () => {
     useEffect(() => {
         AuthAPI.setup();
         AuthAPI.isAuthenticated();
-    })
+    }, [])
 
     const handleLogout = () => {
         AuthAPI.logout();
@@ -38,6 +38,7 @@ const App = () => {
                             render={(props) => <LoginPage {...props} />}
                         />
                     }
+
                     <PrivateRouter
                         path="/challenge"
                         component={ChallengePage}

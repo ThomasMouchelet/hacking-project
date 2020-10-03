@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import usersAPI from "../services/usersAPI";
 import challengesAPI from "../services/challengesAPI";
-import validChallengesAPI from "../services/validChallengesAPI"
+import validChallengesAPI from "../services/validChallengesAPI";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const ChallengePage = () => {
     const [challenge, setChallenge] = useState({
@@ -14,10 +15,23 @@ const ChallengePage = () => {
     const [disabled, setDisabled] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
 
-    const getValidChallenge = async () => {
+    useEffect(() => {
+        getActiveChallenge()
+
+        if (isLoading) {
+            if (userAnswer === answer) {
+                setDisabled(false)
+            } else {
+                setDisabled(true)
+            }
+        }
+    }, [userAnswer])
+
+    const getActiveChallenge = async () => {
         try {
             const id = await usersAPI.findActiveChallenge()
             const challenge = await challengesAPI.findOne(id);
+
             setChallenge({
                 id: challenge.id,
                 name: challenge.name,
@@ -30,28 +44,15 @@ const ChallengePage = () => {
         }
     }
 
-    useEffect(() => {
-        if (!isLoading) {
-            getValidChallenge()
-        }
-        if (isLoading) {
-            if (userAnswer === answer) {
-                setDisabled(false)
-            } else {
-                setDisabled(true)
-            }
-        }
-    }, [userAnswer])
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const credentials = {
-            user: usersAPI.getUserID(),
-            team: "",
-            teamToComplete: new Date(),
-            challenge: challenge.id
+        try {
+            await validChallengesAPI.createValidChallenge(challenge.id);
+            setUserAnswer("")
+            await getActiveChallenge();
+        } catch (error) {
+            console.log(error)
         }
-        // validChallengesAPI.createValidChallenge()
     }
 
     const handleChange = ({ currentTarget }) => {
@@ -64,8 +65,8 @@ const ChallengePage = () => {
 
     return (
         <div>
-            <h1>{challenge.name}</h1>
-            <p>{challenge.description}</p>
+            <h1>{isLoading && challenge.name}</h1>
+            <p>{isLoading && ReactHtmlParser(challenge.description)}</p>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -73,6 +74,7 @@ const ChallengePage = () => {
                     name="answer"
                     onChange={handleChange}
                     onPaste={handlePast}
+                    value={userAnswer}
                 />
                 <input type="submit" value="valider" disabled={disabled} />
             </form>

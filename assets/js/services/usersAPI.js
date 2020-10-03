@@ -3,8 +3,9 @@ import axios from "axios";
 import jwtDecode from 'jwt-decode';
 
 function findActiveChallenge() {
+    const id = getUserID()
     return axios
-        .get(`${USER_API}/11/challenge`)
+        .get(`${USER_API}/${id}/challenge`)
         .then(res => res.data)
 }
 
@@ -16,7 +17,16 @@ function getUserID() {
     }
 }
 
+function getUserTeam() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { team } = jwtDecode(token);
+        return team;
+    }
+}
+
 export default {
     findActiveChallenge,
-    getUserID
+    getUserID,
+    getUserTeam,
 };
