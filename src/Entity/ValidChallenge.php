@@ -31,6 +31,7 @@ class ValidChallenge
 
     /**
      * @ORM\ManyToOne(targetEntity=Challenge::class, inversedBy="validChallenges")
+     * @ORM\OrderBy({"orderChallenge" = "DESC"})
      */
     private $challenge;
 

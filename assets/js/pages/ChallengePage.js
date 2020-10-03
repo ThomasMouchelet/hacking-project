@@ -18,7 +18,6 @@ const ChallengePage = () => {
         try {
             const id = await usersAPI.findActiveChallenge()
             const challenge = await challengesAPI.findOne(id);
-            console.log(challenge);
             setChallenge({
                 id: challenge.id,
                 name: challenge.name,
@@ -52,7 +51,6 @@ const ChallengePage = () => {
             teamToComplete: new Date(),
             challenge: challenge.id
         }
-        console.log(credentials)
         // validChallengesAPI.createValidChallenge()
     }
 

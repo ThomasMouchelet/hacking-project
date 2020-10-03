@@ -11,6 +11,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UserChallengeController extends AbstractController
 {
+    private $security;
+    private $em;
+
     /** @var ObjectManager */
     public function __construct(Security $security, EntityManagerInterface $em)
     {
@@ -21,12 +24,13 @@ class UserChallengeController extends AbstractController
     public function __invoke(Request $request, UserRepository $userRipo)
     {
         if ($request->isMethod('GET')) {
+            $userConnect = $this->security->getUser();
+            $validChallenge = $userConnect->getValidChallenges()->toArray();
+            $challenge = $validChallenge->getChallenge();
+            dd($challenge);
             $user = $request->get('data');
-
             $validChallenge = $user->getValidChallenges()->toArray()[0];
-
             $challenge = $validChallenge->getChallenge()->getId();
-
             /**
              * TODO : Amélioration à faire 
              * Problème : si les ID ne se suivent pas
