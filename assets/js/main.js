@@ -51,9 +51,11 @@ const App = () => {
         >
             <HashRouter>
                 <div>
-                    <div className="tchat">
-                        <Tchat messages={tchatMessages} />
-                    </div>
+                    {isAuthenticated &&
+                        <div className="tchat">
+                            <Tchat messages={tchatMessages} />
+                        </div>
+                    }
 
                     {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}
                     <Switch>

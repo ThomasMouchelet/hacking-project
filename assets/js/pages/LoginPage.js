@@ -48,7 +48,7 @@ const LoginPage = () => {
                 name="password"
             />
             <button type="submit" className="btn btn-success">
-                Je me connecte
+                connect
           </button>
         </form>
     )
