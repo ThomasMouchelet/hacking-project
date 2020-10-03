@@ -26,11 +26,12 @@ const App = () => {
 
     const fetTchatMessage = async () => {
         db.collection("tchat").onSnapshot((snapshot) => {
+            let messages = []
             snapshot.forEach(async (doc) => {
                 const { message } = doc.data()
-                let messages = [...tchatMessages, message]
+                messages = [...messages, message]
                 setTchatMessages(messages)
-                console.log(tchatMessages);
+                console.log(messages);
             })
         })
     }
@@ -51,7 +52,7 @@ const App = () => {
             <HashRouter>
                 <div>
                     <div className="tchat">
-                        {/* <Tchat messages={tchatMessages} /> */}
+                        <Tchat messages={tchatMessages} />
                     </div>
 
                     {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}
