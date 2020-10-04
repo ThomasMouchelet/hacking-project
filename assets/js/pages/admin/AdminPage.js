@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import TeamAPI from "./../../services/teamAPI";
-import Moment from 'react-moment';
-
+import FormTchat from "./FormTchat";
 import ShowValidChallenges from "./ShowValidChallenges";
 
 const AdminPage = () => {
@@ -32,6 +31,9 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
+
+            <FormTchat />
+
             <h1>AdminPage</h1>
             <button onClick={handleReload}>RELOAD</button>
             {isLoading && listTeams.map((team, key) => {
@@ -55,7 +57,6 @@ const AdminPage = () => {
                             })}
                         </div>
                     </div>
-
                 )
             })}
         </div>
