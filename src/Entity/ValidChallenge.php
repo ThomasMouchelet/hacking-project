@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ValidChallengeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ValidChallengeRepository::class)
@@ -16,6 +17,7 @@ class ValidChallenge
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"students_read","teams_read"})
      */
     private $id;
 
@@ -27,12 +29,14 @@ class ValidChallenge
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"students_read","teams_read"})
      */
     private $timeToComplete;
 
     /**
      * @ORM\ManyToOne(targetEntity=Challenge::class, inversedBy="validChallenges")
      * @ORM\OrderBy({"orderChallenge" = "DESC"})
+     * @Groups({"students_read","teams_read"})
      */
     private $challenge;
 

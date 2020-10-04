@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import LoginPage from "./pages/LoginPage";
 import CreateTeamPage from "./pages/CreateTeamPage";
 import FinalPage from "./pages/FinalPage";
-import AdminPage from "./pages/AdminPage";
+import AdminPage from "./pages/admin/AdminPage";
 import AuthAPI from "./services/authAPI";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
