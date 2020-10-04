@@ -47,11 +47,8 @@ const CreateTeamPage = () => {
                 code3: studentTeam.secretKey.slice(6, 9)
             }
 
-            console.log(secretTeamCode)
-
             Object.keys(secretTeamCode).map((index, key) => {
                 if ((index == currentTarget.name) && (secretTeamCode[index] == currentTarget.value)) {
-                    console.log("TTT")
                     currentTarget.className = "valid"
                 }
                 if ((index == currentTarget.name) && (secretTeamCode[index] != currentTarget.value)) {

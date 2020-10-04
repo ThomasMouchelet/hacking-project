@@ -11,20 +11,20 @@ import AdminRoute from "./components/AdminRoute";
 import ChallengePage from "./pages/ChallengePage";
 import { HashRouter, Switch, Route, withRouter, useHistory, Redirect } from "react-router-dom";
 import firebase from "./firebase";
-import Tchat from "./components/Tchat";
 import usersAPI from "./services/usersAPI";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(AuthAPI.isAuthenticated);
     const db = firebase.firestore();
-    const [tchatMessages, setTchatMessages] = useState([])
 
     useEffect(() => {
         fetTchatMessage()
         AuthAPI.setup();
         AuthAPI.isAuthenticated();
-    }, [])
+    }, [isAuthenticated])
 
     const fetTchatMessage = async () => {
         db.collection("tchat").onSnapshot((snapshot) => {
@@ -32,16 +32,38 @@ const App = () => {
             snapshot.forEach(async (doc) => {
                 const { message } = doc.data()
                 messages = [...messages, message]
-                setTchatMessages(messages)
-                console.log(messages);
             })
+
+            if (isAuthenticated) {
+                toast.dark(messages[messages.length - 1], {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         })
     }
 
     const handleLogout = () => {
         AuthAPI.logout();
         setIsAuthenticated(false);
-        history.replace("/login");
+
+        toast.dark("tu parts déja ? 😢", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        // history.replace("/login");
+
     };
 
     const mainRoute = () => {
@@ -63,11 +85,6 @@ const App = () => {
         >
             <HashRouter>
                 <div>
-                    {isAuthenticated &&
-                        <div className="tchat">
-                            <Tchat messages={tchatMessages} />
-                        </div>
-                    }
                     {isAuthenticated && <button className="disconnect" onClick={handleLogout}>Déconnexion</button>}
                     <Switch>
                         <Route exact path="/">
@@ -98,6 +115,19 @@ const App = () => {
                     </Switch>
                 </div>
             </HashRouter>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </AuthContext.Provider>
     )
 }

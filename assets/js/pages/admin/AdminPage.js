@@ -31,11 +31,13 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
+            <div className="header-admin">
+                <h1>AdminPage </h1>
+                <button onClick={handleReload}>RELOAD DATA</button>
+            </div>
 
             <FormTchat />
 
-            <h1>AdminPage</h1>
-            <button onClick={handleReload}>RELOAD</button>
             {isLoading && listTeams.map((team, key) => {
                 return (
                     <div className="team" key={key}>

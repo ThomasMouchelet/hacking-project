@@ -19,13 +19,14 @@ body{
     border: 1px solid rgb(2, 226, 2);
 }
 .tchat{
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    top: 0;
     right: 0;
     background-color: rgba(139, 139, 139, 0.247);
     color: $green;
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.247);
+
 
     h3{
         color: $blue;
@@ -39,8 +40,23 @@ body{
         color: $red;
         margin:0 10px;
     }
-    .message{
+    .txt{
         color: $white;
+    }
+}
+
+.message{
+    opacity: .4;
+}
+.message:hover{
+    opacity: 1;
+}
+.message:last-child() 
+{
+    opacity: 1;
+
+    .txt{
+        
     }
 }
 
@@ -113,3 +129,10 @@ input[type="submit"],button:hover{
 .team h2{
     margin-bottom: 0;
 }
+
+.header-admin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

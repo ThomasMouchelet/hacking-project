@@ -24,8 +24,8 @@ const FormTchat = () => {
     }
 
     return (
-        <div className="" >
-            <form onSubmit={handleSubmit}>
+        <div>
+            <form onSubmit={handleSubmit} >
                 <input
                     type="text" placeholder="message"
                     onChange={handleChange}

@@ -4,6 +4,9 @@ import AuthContext from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import usersAPI from "../services/usersAPI";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LoginPage = () => {
     const history = useHistory();
     const [credentials, setCredentials] = useState({
@@ -23,6 +26,17 @@ const LoginPage = () => {
         try {
             await AuthAPI.authenticate(credentials);
             setIsAuthenticated(true);
+
+            toast("🦄 Que la force de la licorne soit avec toi !", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
             if (usersAPI.isAdmin()) {
                 history.replace("admin");
             } else {
