@@ -34,23 +34,25 @@ const LoginPage = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text" placeholder="username"
-                onChange={handleChange}
-                value={credentials.username}
-                name="username"
-            />
-            <input
-                type="password"
-                placeholder="password"
-                onChange={handleChange}
-                name="password"
-            />
-            <button type="submit" className="btn btn-success">
-                connect
-          </button>
-        </form>
+        <div className="window">
+            <form onSubmit={handleSubmit} className="terminal">
+                <input
+                    type="text" placeholder="username"
+                    onChange={handleChange}
+                    value={credentials.username}
+                    name="username"
+                />
+                <input
+                    type="password"
+                    placeholder="password"
+                    onChange={handleChange}
+                    name="password"
+                />
+                <button type="submit" className="btn btn-success">
+                    connect
+                </button>
+            </form>
+        </div>
     )
 }
 

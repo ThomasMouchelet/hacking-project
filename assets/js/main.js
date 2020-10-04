@@ -68,7 +68,7 @@ const App = () => {
                             <Tchat messages={tchatMessages} />
                         </div>
                     }
-                    {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}
+                    {isAuthenticated && <button className="disconnect" onClick={handleLogout}>Déconnexion</button>}
                     <Switch>
                         <Route exact path="/">
                             {mainRoute}

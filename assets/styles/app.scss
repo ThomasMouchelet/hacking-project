@@ -1,4 +1,96 @@
+@import "./terminal.scss";
+
+$green: #00ff00;
+$red: rgb(248,108,105);
+$white:rgb(204,204,204);
+$blue: rgb(136,219,253);
+$grey:#333333;
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;700&display=swap');
+
+body{
+    background-color: gray;
+    font-family: 'Inconsolata', monospace;
+}
+
 .valid{
     background-color: green;
     color: #fff;
+    border: 1px solid rgb(2, 226, 2);
+}
+.tchat{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(139, 139, 139, 0.247);
+    color: $green;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.247);
+
+    h3{
+        color: $blue;
+        margin: 0;
+    }
+    .arrow{
+        color: $green;
+        margin-left: 10px;
+    }
+    .tild{
+        color: $red;
+        margin:0 10px;
+    }
+    .message{
+        color: $white;
+    }
+}
+
+h1{
+    color: $green;
+    font-weight: 400;
+}
+p{
+    color: $white;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    color: $green;
+    padding: 5px 18px;
+    font-size: 1.3em;
+    border: 1px solid rgba(255,255,255,.1);
+    margin-right: 20px;
+    font-weight: 200;
+
+    &::placeholder{
+        color: $white;
+    }
+}
+
+input[type="submit"],button{
+    background-color: $green;
+    border: none;
+    padding: 5px 18px;
+    opacity: .8;
+    font-size: 1.3em;
+    color: $grey;
+}
+
+input[type="submit"]:disabled,button.valid:disabled{
+    opacity: .1;
+}
+
+input[type="submit"],button:hover{
+    cursor: pointer;
+    opacity: 1;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+
+.disconnect{
+    background-color: $red;
+    color: $white;
 }

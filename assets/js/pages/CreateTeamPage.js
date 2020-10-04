@@ -71,9 +71,9 @@ const CreateTeamPage = () => {
         <div>
             <h1>Create Team</h1>
             <form>
-                <input type="text" onChange={handleChange} name="code1" />
-                <input type="text" onChange={handleChange} name="code2" />
-                <input type="text" onChange={handleChange} name="code3" />
+                <input type="text" onChange={handleChange} name="code1" placeholder="code 1" />
+                <input type="text" onChange={handleChange} name="code2" placeholder="code 2" />
+                <input type="text" onChange={handleChange} name="code3" placeholder="code 3" />
             </form>
             {winMode && winModView}
         </div>

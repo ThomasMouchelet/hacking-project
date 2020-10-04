@@ -14,12 +14,14 @@ const Tchat = ({ messages }) => {
 
     return (
         <div>
-            <h1>Tchat</h1>
+            <h3>messages : </h3>
             { isLoading && (
                 Object.values(adminMessage).map((adminMessage, key) => {
                     return (
                         <div key={key}>
-                            {adminMessage}
+                            <span className="arrow">→</span>
+                            <span className="tild">~</span>
+                            <span className="message">{adminMessage}</span>
                         </div>
                     )
                 })
