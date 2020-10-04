@@ -7,6 +7,13 @@ function findOne(id) {
         .then(res => res.data)
 }
 
+function findAllChallenges() {
+    return axios
+        .get(`${CHALLENGE_API}`)
+        .then(res => res.data["hydra:member"])
+}
+
 export default {
     findOne,
+    findAllChallenges
 };

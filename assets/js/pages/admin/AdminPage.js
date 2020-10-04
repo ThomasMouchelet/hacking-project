@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import TeamAPI from "./../../services/teamAPI";
 import FormTchat from "./FormTchat";
 import ShowValidChallenges from "./ShowValidChallenges";
+import ShowChallenges from "./ShowChallenges";
 
 const AdminPage = () => {
     const [listTeams, setListTeams] = useState(null)
-    const [isLoading, setIsLoading] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const [reload, setReload] = useState(false)
 
     useEffect(() => {
@@ -38,29 +39,40 @@ const AdminPage = () => {
 
             <FormTchat />
 
-            {isLoading && listTeams.map((team, key) => {
-                return (
-                    <div className="team" key={key}>
-                        <h2>{team.name} <span> - SK : {team.secretKey}</span> </h2>
+            <div className="row">
+                <div className="challenges-admin">
+                    <h2>Challenges</h2>
+                    <ShowChallenges reload={reload} />
+                </div>
 
-                        <ShowValidChallenges validChallenges={team.validChallenges} />
+                <div className="logs">
+                    <h2>Logs</h2>
+                    {isLoading && listTeams.map((team, key) => {
+                        return (
+                            <div className="team" key={key}>
+                                <h3>{team.name} <span> - SK : {team.secretKey}</span> </h3>
 
-                        <div className="students">
-                            {Object.values(team.students).map((student, key) => {
-                                return (
-                                    <div className="student" key={key}>
-                                        <span>{student.firstName}</span>
-                                        <span> {student.lastName}</span>
-                                        <span> - SK : {student.secretKey}</span>
+                                <ShowValidChallenges validChallenges={team.validChallenges} />
 
-                                        <ShowValidChallenges validChallenges={student.validChallenges} />
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                )
-            })}
+                                <div className="students">
+                                    {Object.values(team.students).map((student, key) => {
+                                        return (
+                                            <div className="student" key={key}>
+                                                <span>{student.firstName}</span>
+                                                <span> {student.lastName}</span>
+                                                <span> - SK : {student.secretKey}</span>
+
+                                                <ShowValidChallenges validChallenges={student.validChallenges} />
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+
+            </div>
         </div>
     )
 }

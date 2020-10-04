@@ -68,7 +68,7 @@ p{
     color: $white;
 }
 
-input{
+input,textarea{
     background-color: transparent;
     border: none;
     color: $green;
@@ -114,6 +114,10 @@ input[type="submit"],button:hover{
 
 .admin-page{
     color: $white;
+
+    h2{
+        color: $blue;
+    }
 }
 
 .students{
@@ -126,13 +130,30 @@ input[type="submit"],button:hover{
     padding-left: 10px;
 }
 
-.team h2{
+.team h3{
     margin-bottom: 0;
 }
 
 .header-admin{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+
+    button{
+        margin-left: 20px;
+    }
 }
 
+.row{
+    display: flex;
+}
+
+.row>*{
+    width: 50%;
+    margin: 0 10px;
+}
+
+.challengeDetails{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
