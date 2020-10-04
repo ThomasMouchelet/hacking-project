@@ -60,7 +60,8 @@ input{
     font-size: 1.3em;
     border: 1px solid rgba(255,255,255,.1);
     margin-right: 20px;
-    font-weight: 200;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 400;
 
     &::placeholder{
         color: $white;
