@@ -23,11 +23,6 @@ $white:rgb(204,204,204);
 $blue: gb(136,219,253);
 $grey:#333333;
 
-html, body {
-	height: 100%;
-	overflow: hidden;
-}
-
 body {
 	background: #3a7bd5;
 	background-image: -webkit-radial-gradient(top, circle cover, #333333 0%, #1f1d1d 80%);

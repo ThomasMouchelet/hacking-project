@@ -7,10 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=StudentRepository::class)
- * @ApiResource
+ * @ApiResource(
+ * normalizationContext={
+ *     "groups"={"students_read"}
+ *  },
+ * )
  */
 class Student
 {
@@ -18,26 +23,31 @@ class Student
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"students_read","teams_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"students_read","teams_read"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"students_read","teams_read"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"students_read","teams_read"})
      */
     private $secretKey;
 
     /**
      * @ORM\OneToMany(targetEntity=ValidChallenge::class, mappedBy="student")
+     * @Groups({"students_read","teams_read"})
      */
     private $validChallenges;
 
@@ -48,6 +58,7 @@ class Student
 
     /**
      * @ORM\ManyToOne(targetEntity=Team::class, inversedBy="students")
+     * @Groups({"students_read"})
      */
     private $team;
 
