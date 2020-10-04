@@ -7,10 +7,12 @@ import AdminPage from "./pages/AdminPage";
 import AuthAPI from "./services/authAPI";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
+import AdminRoute from "./components/AdminRoute";
 import ChallengePage from "./pages/ChallengePage";
-import { HashRouter, Switch, Route, withRouter, useHistory } from "react-router-dom";
+import { HashRouter, Switch, Route, withRouter, useHistory, Redirect } from "react-router-dom";
 import firebase from "./firebase";
 import Tchat from "./components/Tchat";
+import usersAPI from "./services/usersAPI";
 
 const App = () => {
     const history = useHistory();
@@ -42,6 +44,16 @@ const App = () => {
         history.replace("/login");
     };
 
+    const mainRoute = () => {
+        if (!isAuthenticated) {
+            return <Redirect to="/login" />
+        } else if (isAuthenticated && usersAPI.isAdmin()) {
+            return <Redirect to="/admin" />
+        } else if (isAuthenticated && !usersAPI.isAdmin()) {
+            return <Redirect to="/challenge" />
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -56,9 +68,11 @@ const App = () => {
                             <Tchat messages={tchatMessages} />
                         </div>
                     }
-
                     {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}
                     <Switch>
+                        <Route exact path="/">
+                            {mainRoute}
+                        </Route>
                         {!isAuthenticated &&
                             <Route
                                 path="/login"
@@ -77,7 +91,7 @@ const App = () => {
                             path="/final_page"
                             component={FinalPage}
                         />
-                        <PrivateRouter
+                        <AdminRoute
                             path="/admin"
                             component={AdminPage}
                         />

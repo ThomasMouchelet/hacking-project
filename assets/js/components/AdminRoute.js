@@ -6,7 +6,7 @@ import usersAPI from "../services/usersAPI";
 const PrivateRoute = ({ path, component }) => {
     const { isAuthenticated } = useContext(AuthContext);
 
-    return (isAuthenticated && !usersAPI.isAdmin()) ? (
+    return (isAuthenticated && usersAPI.isAdmin()) ? (
         <Route path={path} component={component} />
     ) : (
             <Redirect to="/" />
