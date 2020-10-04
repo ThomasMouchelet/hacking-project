@@ -104,7 +104,11 @@ input[type="submit"],button:hover{
     color: $green;
 }
 
-.valid-student-challenge{
+.valid-challenge{
     color: $white;
     padding-left: 10px;
+}
+
+.team h2{
+    margin-bottom: 0;
 }
