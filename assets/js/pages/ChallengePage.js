@@ -4,6 +4,7 @@ import challengesAPI from "../services/challengesAPI";
 import validChallengesAPI from "../services/validChallengesAPI";
 import { useHistory } from "react-router-dom";
 import teamAPI from "../services/teamAPI";
+import AuthAPI from "../services/authAPI";
 import ShowDescriptionChallenge from "../components/ShowDescriptionChallenge";
 
 const ChallengePage = () => {
@@ -19,6 +20,7 @@ const ChallengePage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        AuthAPI.setup();
         getActiveChallenge()
         if (isLoading) {
             if (userAnswer.toLowerCase() === answer) {

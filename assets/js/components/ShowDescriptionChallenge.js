@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import usersAPI from "../services/usersAPI";
+import teamAPI from "../services/teamAPI";
 
 const ShowDescriptionChallenge = ({ description }) => {
     const [descriptionSTRING, setDescriptionSTRING] = useState("")

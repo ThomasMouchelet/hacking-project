@@ -21,9 +21,10 @@ const App = () => {
     const db = firebase.firestore();
 
     useEffect(() => {
-        fetTchatMessage();
+        console.log("tttttt")
         AuthAPI.setup();
         AuthAPI.isAuthenticated();
+        fetTchatMessage();
     }, [isAuthenticated])
 
     const fetTchatMessage = async () => {
