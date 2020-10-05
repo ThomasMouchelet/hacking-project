@@ -1,6 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import teamAPI from "../services/teamAPI";
 import userAPI from "../services/usersAPI";
+import authAPI from "../services/authAPI";
+import tudentAPI from "../services/studentAPI";
+import studentAPI from "../services/studentAPI";
+import AuthContext from "../contexts/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateTeamPage = () => {
     const [studentTeam, setStudentTeam] = useState(null)
@@ -11,6 +17,7 @@ const CreateTeamPage = () => {
     })
     const [isLoading, setIsLoading] = useState(false)
     const [winMode, setWinMode] = useState(false)
+    const { setIsAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
         const studentTeamID = userAPI.getStudentTeamID()
@@ -59,14 +66,55 @@ const CreateTeamPage = () => {
     };
 
 
+    const handleLogout = () => {
+
+        toast.dark(studentTeam.name, {
+            position: "top-right",
+            autoClose: 9000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        toast.dark("password", {
+            position: "top-right",
+            autoClose: 9000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        authAPI.logout();
+        setIsAuthenticated(false);
+    }
+
     const winModView = (
-        <div>WIN</div>
+        <div>
+            <button onClick={handleLogout}>Team connection</button>
+            <div className="winMod">WIN</div>
+        </div>
     )
 
     return (
-
-        <div>
+        <div className="create-team">
             <h1>Create Team</h1>
+            <div>
+                Bienvenue à vous, votre petit nom d’équipe sera <em>{isLoading && studentTeam.name}</em>
+                <br />
+                Avant de commencer… il va falloir trouver qui seront vos collaborateurs.
+                <br />
+                Chacun des membres de votre équipe a simplement à entrer le code qui lui a été confié précédemment dans le champs qui lui est réservé.
+                <br />
+                Pour rappel votre code est le suivant : <em>{studentAPI.getStudentSecretKey()}</em>
+                <br />
+                Bon courage !
+                <br />
+            </div>
+
             <form>
                 <input type="text" onChange={handleChange} name="code1" placeholder="code 1" />
                 <input type="text" onChange={handleChange} name="code2" placeholder="code 2" />

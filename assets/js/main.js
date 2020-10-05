@@ -21,7 +21,7 @@ const App = () => {
     const db = firebase.firestore();
 
     useEffect(() => {
-        fetTchatMessage()
+        fetTchatMessage();
         AuthAPI.setup();
         AuthAPI.isAuthenticated();
     }, [isAuthenticated])
@@ -61,9 +61,7 @@ const App = () => {
             draggable: true,
             progress: undefined,
         });
-
         // history.replace("/login");
-
     };
 
     const mainRoute = () => {
