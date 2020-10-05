@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
-import authAPI from "../services/authAPI"
+import authAPI from "../services/authAPI";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FinalPage = () => {
     const { setIsAuthenticated } = useContext(AuthContext);
