@@ -112,7 +112,7 @@ class ChallengeFixtures extends Fixture
                 <br>
                 Avant toute chose, notez bien le code suivant, il vous sera rapidement nécessaire :
                 <br><br>
-                <strong>{{student.secretKey}}</strong>
+                <em>{secretKey}</em>
                 <br><br>
                 A présent, rejoignez-moi dans un espace sécurisé pour constituer votre équipe.
                 <br> 

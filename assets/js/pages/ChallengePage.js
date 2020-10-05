@@ -4,6 +4,7 @@ import challengesAPI from "../services/challengesAPI";
 import validChallengesAPI from "../services/validChallengesAPI";
 import { useHistory } from "react-router-dom";
 import teamAPI from "../services/teamAPI";
+import ShowDescriptionChallenge from "../components/ShowDescriptionChallenge";
 
 const ChallengePage = () => {
     const history = useHistory();
@@ -16,13 +17,9 @@ const ChallengePage = () => {
     const [userAnswer, setUserAnswer] = useState("");
     const [disabled, setDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
-    const [namingGame, setNamingGame] = useState("")
 
     useEffect(() => {
         getActiveChallenge()
-        const userType = usersAPI.getType();
-        const name = userType === "student" ? usersAPI.getFirstName() : teamAPI.getName()
-        setNamingGame(name)
         if (isLoading) {
             if (userAnswer.toLowerCase() === answer) {
                 setDisabled(false)
@@ -87,9 +84,11 @@ const ChallengePage = () => {
     return (
         <div>
             <h1>{isLoading && challenge.name}</h1>
+
             {isLoading &&
-                <p dangerouslySetInnerHTML={{ __html: challenge.description.toString().replace(/{namingGame}/g, namingGame) }}></p>
+                <ShowDescriptionChallenge description={challenge.description} />
             }
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
