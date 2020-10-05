@@ -6,8 +6,6 @@ const ShowChallenges = ({ reload }) => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        console.log("******")
-        console.log("challenges")
         fetAllChallenges()
     }, [reload])
 
@@ -16,7 +14,6 @@ const ShowChallenges = ({ reload }) => {
             const challenges = await challengesAPI.findAllChallenges()
             setChallengesList(challenges)
             setIsLoading(true)
-            console.log(challenges)
         } catch (error) {
             console.log(error)
         }

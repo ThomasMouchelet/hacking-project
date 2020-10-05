@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import teamAPI from "../services/teamAPI";
 import userAPI from "../services/usersAPI";
-import authAPI from "../services/authAPI";
 import tudentAPI from "../services/studentAPI";
 import studentAPI from "../services/studentAPI";
 import AuthContext from "../contexts/AuthContext";
-import AuthAPI from "./services/authAPI";
+import authAPI from "../services/authAPI";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +20,7 @@ const CreateTeamPage = () => {
     const { setIsAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
-        AuthAPI.setup();
+        authAPI.setup();
         const studentTeamID = userAPI.getStudentTeamID()
         fetStudentTeam(studentTeamID)
         if (isLoading) {
@@ -95,9 +94,9 @@ const CreateTeamPage = () => {
     }
 
     const winModView = (
-        <div>
+        <div className="winMod">
             <button onClick={handleLogout}>Team connection</button>
-            <div className="winMod">WIN</div>
+            <p>Password : <em>123</em></p>
         </div>
     )
 

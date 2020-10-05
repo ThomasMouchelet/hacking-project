@@ -164,6 +164,11 @@ em{
 
 .winMod{
     color: $white;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .create-team{
