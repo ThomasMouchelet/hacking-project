@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import usersAPI from "../services/usersAPI";
 import challengesAPI from "../services/challengesAPI";
 import validChallengesAPI from "../services/validChallengesAPI";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { useHistory } from "react-router-dom";
+import teamAPI from "../services/teamAPI";
 
 const ChallengePage = () => {
     const history = useHistory();
@@ -16,11 +16,15 @@ const ChallengePage = () => {
     const [userAnswer, setUserAnswer] = useState("");
     const [disabled, setDisabled] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [namingGame, setNamingGame] = useState("")
 
     useEffect(() => {
         getActiveChallenge()
+        const userType = usersAPI.getType();
+        const name = userType === "student" ? usersAPI.getFirstName() : teamAPI.getName()
+        setNamingGame(name)
         if (isLoading) {
-            if (userAnswer === answer) {
+            if (userAnswer.toLowerCase() === answer) {
                 setDisabled(false)
             } else {
                 setDisabled(true)
@@ -72,10 +76,20 @@ const ChallengePage = () => {
         setUserAnswer(e.clipboardData.getData('Text'));
     }
 
+    const setInnerHTML = (description) => {
+        const userType = usersAPI.getType();
+        const namingGame = userType === "student" ? usersAPI.getFirstName() : teamAPI.getName()
+        const secretKey = userType === "student" ? usersAPI.getSecretKey() : ""
+        description.replace(/{namingGame}/g, namingGame)
+        description.replace(/{secretKey}/g, secretKey)
+    }
+
     return (
         <div>
             <h1>{isLoading && challenge.name}</h1>
-            <p>{isLoading && ReactHtmlParser(challenge.description)}</p>
+            {isLoading &&
+                <p dangerouslySetInnerHTML={{ __html: challenge.description.toString().replace(/{namingGame}/g, namingGame) }}></p>
+            }
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

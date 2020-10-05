@@ -1,5 +1,6 @@
 import { TEAM_API } from "../config";
 import axios from "axios";
+import jwtDecode from 'jwt-decode';
 
 function findOne(id) {
     return axios
@@ -13,7 +14,16 @@ function findAllTeams() {
         .then(res => res.data["hydra:member"])
 }
 
+function getName() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { name } = jwtDecode(token);
+        return name;
+    }
+}
+
 export default {
     findOne,
-    findAllTeams
+    findAllTeams,
+    getName
 };

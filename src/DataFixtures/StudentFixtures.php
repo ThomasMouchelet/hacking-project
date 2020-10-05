@@ -104,67 +104,67 @@ class StudentFixtures extends Fixture
             'firstName' => "Maelle",
             'lastName' => "DUCOURET",
         ],
-        'student25' => [
+        'student24' => [
             'firstName' => "Eva",
             'lastName' => "HAOUES",
         ],
-        'student26' => [
+        'student25' => [
             'firstName' => "Pauline",
             'lastName' => "LAXALT",
         ],
-        'student27' => [
+        'student26' => [
             'firstName' => "Guillaume",
             'lastName' => "LEY",
         ],
-        'student28' => [
+        'student27' => [
             'firstName' => "Laura",
             'lastName' => "MERCIER",
         ],
-        'student29' => [
+        'student28' => [
             'firstName' => "Manon",
             'lastName' => "MIEUSSET",
         ],
-        'student30' => [
+        'student29' => [
             'firstName' => "Samia",
             'lastName' => "MIMANI",
         ],
-        'student31' => [
+        'student30' => [
             'firstName' => "Alizé",
             'lastName' => "MOREIRA",
         ],
-        'student32' => [
+        'student31' => [
             'firstName' => "Axel",
             'lastName' => "PINHEIRO",
         ],
-        'student33' => [
+        'student32' => [
             'firstName' => "Margaux",
             'lastName' => "PIQUEPAILLE",
         ],
-        'student34' => [
+        'student33' => [
             'firstName' => "Moana",
             'lastName' => "RENOUX",
         ],
-        'student35' => [
+        'student34' => [
             'firstName' => "Marie-Gladys",
             'lastName' => "RIVIEREZ",
         ],
-        'student36' => [
+        'student35' => [
             'firstName' => "Gabriel",
             'lastName' => "RUELLO",
         ],
-        'student37' => [
+        'student36' => [
             'firstName' => "Dylan",
             'lastName' => "SOUSA DA CUNHA",
         ],
-        'student38' => [
+        'student37' => [
             'firstName' => "Paul",
             'lastName' => "VELEZ",
         ],
-        'student39' => [
+        'student38' => [
             'firstName' => "Pauline",
             'lastName' => "VESQUE",
         ],
-        'student40' => [
+        'student39' => [
             'firstName' => "Florian",
             'lastName' => "VINOT",
         ],

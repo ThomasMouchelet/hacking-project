@@ -49,6 +49,22 @@ function getStudentTeamID() {
     }
 }
 
+function getFirstName() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { firstName } = jwtDecode(token);
+        return firstName;
+    }
+}
+
+function getSecretKey() {
+    const token = window.localStorage.getItem("authToken");
+    if (token) {
+        const { secretKey } = jwtDecode(token);
+        return secretKey;
+    }
+}
+
 function isAdmin() {
     const token = window.localStorage.getItem("authToken");
     if (token) {
@@ -64,5 +80,7 @@ export default {
     getTeamID,
     getStudentID,
     getStudentTeamID,
-    isAdmin
+    isAdmin,
+    getFirstName,
+    getSecretKey
 };
