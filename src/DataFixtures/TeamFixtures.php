@@ -59,7 +59,7 @@ class TeamFixtures extends Fixture
             $manager->persist($team);
 
             $user = new User();
-            $hash = $this->encoder->encodePassword($user, "bootstrap");
+            $hash = $this->encoder->encodePassword($user, "123");
 
             $user->setUsername($teamName)
                 ->setPassword($hash)
