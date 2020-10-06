@@ -21,7 +21,7 @@ const ChallengePage = () => {
 
     useEffect(() => {
         AuthAPI.setup();
-        getActiveChallenge()
+        getActiveChallenge();
         if (isLoading) {
             if (userAnswer.toLowerCase() === answer) {
                 setDisabled(false)
@@ -34,14 +34,12 @@ const ChallengePage = () => {
     const getActiveChallenge = async () => {
         try {
             const id = await usersAPI.findActiveChallenge()
-
             if (id === "complete") {
                 const userType = usersAPI.getType();
                 const redirectPage = userType === "student" ? "create_team" : "final_page"
                 history.replace(redirectPage);
             } else {
                 const challenge = await challengesAPI.findOne(id);
-
                 setChallenge({
                     id: challenge.id,
                     name: challenge.name,
@@ -60,8 +58,8 @@ const ChallengePage = () => {
         event.preventDefault();
         try {
             await validChallengesAPI.createValidChallenge(challenge.id);
-            setUserAnswer("")
-            await getActiveChallenge();
+            setUserAnswer("");
+            getActiveChallenge();
         } catch (error) {
             console.log(error)
         }
@@ -73,14 +71,6 @@ const ChallengePage = () => {
 
     const handlePast = (e) => {
         setUserAnswer(e.clipboardData.getData('Text'));
-    }
-
-    const setInnerHTML = (description) => {
-        const userType = usersAPI.getType();
-        const namingGame = userType === "student" ? usersAPI.getFirstName() : teamAPI.getName()
-        const secretKey = userType === "student" ? usersAPI.getSecretKey() : ""
-        description.replace(/{namingGame}/g, namingGame)
-        description.replace(/{secretKey}/g, secretKey)
     }
 
     return (

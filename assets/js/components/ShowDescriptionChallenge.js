@@ -13,7 +13,7 @@ const ShowDescriptionChallenge = ({ description }) => {
             .replace(/{namingGame}/g, namingGame)
             .replace(/{secretKey}/g, secretKey)
         setDescriptionSTRING(newDescription);
-    }, [])
+    }, [description])
 
     return (
         <div className="description">
