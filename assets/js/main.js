@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateTeamPage from "./pages/CreateTeamPage";
 import FinalPage from "./pages/FinalPage";
 import AdminPage from "./pages/admin/AdminPage";
+import StudentList from "./pages/StudentList";
 import AuthAPI from "./services/authAPI";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRouter from "./components/PrivateRouter";
@@ -52,7 +53,7 @@ const App = () => {
         AuthAPI.logout();
         setIsAuthenticated(false);
 
-        toast.dark("tu parts déja ? 😢", {
+        toast.dark("Déjà fini ? 😲", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -88,6 +89,10 @@ const App = () => {
                         <Route exact path="/">
                             {mainRoute}
                         </Route>
+                        <Route
+                            path="/student_list"
+                            component={StudentList}
+                        />
                         {!isAuthenticated &&
                             <Route
                                 path="/login"

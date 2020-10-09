@@ -18,7 +18,14 @@ function getStudentSecretKey() {
     }
 }
 
+function getAll() {
+    return axios
+        .get(`${STUDENT_API}`)
+        .then(res => res.data["hydra:member"])
+}
+
 export default {
     getStudentTeamID,
-    getStudentSecretKey
+    getStudentSecretKey,
+    getAll
 };

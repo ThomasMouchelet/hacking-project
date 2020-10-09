@@ -179,6 +179,19 @@ em{
     }
 }
 
+body{
+    min-height: 100vh;
+}
+
+.login-page{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.studentList{
+    color: #fff;
+}
 
 @media (max-width: 400px) {
     *{

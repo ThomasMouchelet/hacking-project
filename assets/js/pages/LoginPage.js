@@ -48,7 +48,7 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="window">
+        <div className="window login-page">
             <form onSubmit={handleSubmit} className="terminal">
                 <input
                     type="text" placeholder="username"
