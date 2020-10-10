@@ -79,7 +79,7 @@ const CreateTeamPage = () => {
             progress: undefined,
         });
 
-        toast.dark("password", {
+        toast.dark("123", {
             position: "top-right",
             autoClose: 9000,
             hideProgressBar: false,
