@@ -15,6 +15,7 @@ import firebase from "./firebase";
 import usersAPI from "./services/usersAPI";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import VideoPage from "./pages/VideoPage";
 
 const App = () => {
     const history = useHistory();
@@ -92,6 +93,10 @@ const App = () => {
                         <Route
                             path="/student_list"
                             component={StudentList}
+                        />
+                        <Route
+                            path="/video"
+                            component={VideoPage}
                         />
                         {!isAuthenticated &&
                             <Route

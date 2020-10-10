@@ -23,9 +23,9 @@ const LoginPage = () => {
 
     return (
         <div className="studentList">
-            {isLoading && Object.values(studentList).map(student => {
+            {isLoading && Object.values(studentList).map((student, key) => {
                 return (
-                    <div>
+                    <div key={key}>
                         {student.firstName} {student.lastName}
                     </div>
                 )
