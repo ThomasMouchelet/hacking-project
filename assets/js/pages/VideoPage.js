@@ -23,18 +23,8 @@ const VideoPage = () => {
         })
     }
 
-    const handlePlay = () => {
-        console.log('onPlay')
-        console.log(playerRef.current)
-        // setPlaying(true)
-        // playerRef.current.seekTo(0)
-        // setPlaying(true)
-    }
-
     return (
         <div className="videoPage">
-            <p onClick={handlePlay}>play</p>
-
             <ReactPlayer
                 ref={playerRef}
                 className='react-player'
