@@ -230,4 +230,18 @@ body{
         width: 100%;
         font-size: 2em !important;
     }
+    .header-admin{
+        flex-direction: column;
+
+        button{
+            margin: 15px 0;
+        }
+    }
+    .row {
+        flex-direction: column;
+
+        &>*{
+            width: 100%;
+        }
+    }
 }
