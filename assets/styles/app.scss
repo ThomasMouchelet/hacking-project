@@ -12,6 +12,9 @@ body{
     background-color: gray;
     font-family: 'Inconsolata', monospace;
 }
+*{
+    box-sizing: border-box;
+}
 
 .valid{
     background-color: green;
@@ -225,6 +228,6 @@ body{
     input, button{
         margin: 40px 0;
         width: 100%;
-        font-size: 10em !important;
+        font-size: 2em !important;
     }
 }
