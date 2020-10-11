@@ -193,6 +193,16 @@ body{
     color: #fff;
 }
 
+.login-page{
+    display: flex;
+    flex-direction: column;
+}
+.error{
+    opacity: 1;
+    transform: all .3s;
+    color: $red;
+}
+
 @media (max-width: 400px) {
     *{
         box-sizing: border-box;

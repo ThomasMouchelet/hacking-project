@@ -14,6 +14,7 @@ const LoginPage = () => {
         password: "",
     });
     const { setIsAuthenticated } = useContext(AuthContext);
+    const [error, setError] = useState("");
 
     const handleChange = ({ currentTarget }) => {
         const { value, name } = currentTarget;
@@ -27,23 +28,36 @@ const LoginPage = () => {
             await AuthAPI.authenticate(credentials);
             setIsAuthenticated(true);
 
-            toast("🦄 Que la force de la licorne soit avec toi !", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
             if (usersAPI.isAdmin()) {
+                toast("🦄 Bravo jeune hacker", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 history.replace("admin");
             } else {
+                toast("🦄 Que la force de la licorne soit avec toi !", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 history.replace("challenge");
             }
         } catch (error) {
             console.log(error);
+            setError(
+                "Identifiant ou mot de passe incorrect"
+            );
+
+            toast.error("Identifiant ou mot de passe incorrect");
         }
     };
 
@@ -66,6 +80,7 @@ const LoginPage = () => {
                     connect
                 </button>
             </form>
+            {/* {error && <p className="error">{error}</p>} */}
         </div>
     )
 }
