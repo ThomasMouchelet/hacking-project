@@ -196,6 +196,8 @@ body{
 .login-page{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .error{
     opacity: 1;
