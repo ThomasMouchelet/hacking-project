@@ -152,6 +152,36 @@ class ChallengeFixtures extends Fixture
             'orderChallenge' => "9",
             'type' => 'team'
         ],
+        'challenge10' => [
+            'name' => "Je te vois",
+            'answer' => "artistcode",
+            'description' => "
+                On dit d’une oeuvre d’art qu’elle n’appartient plus à son créateur dès lors qu’elle est achevée.
+                <br>
+                La vôtre vous regarde depuis le DÉBUT et elle a quelque chose à vous dire.
+            ",
+            'orderChallenge' => "10",
+            'type' => 'team'
+        ],
+        'challenge11' => [
+            'name' => "Miahou",
+            'answer' => "cox",
+            'description' => "
+                Bravo, mais ceci n’était qu’un test.
+                <br>
+                Nous allons maintenant pouvoir collaborer ensemble pour pénétrer le système.
+                <br>
+                Je suis parvenue à collecter certaines informations, mais vous allez devoir terminer le travail.
+                <br>
+                Pour accéder à l’interface administrateur et prendre le contrôle du système il vous faudra un identifiant que j’ai réussi à obtenir et qui le suivant : <em>mistert</em>
+                <br>
+                D'après mes informations, le mot de passe comporte le nom du chat de Thomas Mouchelet.
+                <br>
+                Trouvez son nom et je vous aiderai à cracker le mot de passe.
+            ",
+            'orderChallenge' => "11",
+            'type' => 'team'
+        ],
     ];
 
     public function load(ObjectManager $manager)

@@ -38,7 +38,14 @@ const FinalPage = () => {
             <h1>Accès admin</h1>
             <br />
             <p>Login : <em>mistert</em></p>
-            <p>Password : <em>azerty</em></p>
+            <p>Vous avez trouvez une des variables du mot de passe : <em>cox</em></p>
+            <p>Il vous manque 3 autres varibles liées à votre cible : </p>
+            <ul>
+                <li>Le jour de naissance </li>
+                <li>Le mois de naissance </li>
+                <li>L'année de naissance </li>
+            </ul>
+            <p>Une fois ces différentes informations rassemblées, vous devrez trouver la bonne combinaison.</p>
             <br />
             <button onClick={handleLogout}>Admin connection</button>
         </div>

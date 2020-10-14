@@ -69,6 +69,7 @@ const LoginPage = () => {
                     onChange={handleChange}
                     value={credentials.username}
                     name="username"
+                    placeholder="t.mouchelet"
                 />
                 <input
                     type="password"

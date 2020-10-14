@@ -110,7 +110,9 @@ const CreateTeamPage = () => {
                 <br />
                 Chacun des membres de votre équipe a simplement à entrer le code qui lui a été confié précédemment dans le champs qui lui est réservé.
                 <br />
-                Pour rappel votre code est le suivant : <em>{studentAPI.getStudentSecretKey()}</em>
+                Pour rappel votre code secret est le suivant : <em>{studentAPI.getStudentSecretKey()}</em>
+                <br />
+                L'identifiant de connexion de votre team : <em>{isLoading && studentTeam.name}</em>
                 <br />
                 Bon courage !
                 <br />

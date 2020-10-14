@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import ReactPlayer from 'react-player';
 import firebase from "../firebase";
+import { Link } from "react-router-dom";
 
 const VideoPage = () => {
     const [url, setUrl] = useState("http://4graphik.com/codecamp/app/video/mt.mp4")
@@ -25,6 +26,9 @@ const VideoPage = () => {
 
     return (
         <div className="videoPage">
+
+            <Link className="btn btn-success" to="/login">Login</Link>
+
             <ReactPlayer
                 ref={playerRef}
                 className='react-player'
