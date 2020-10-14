@@ -125,7 +125,7 @@ class ChallengeFixtures extends Fixture
         ],
         'challenge8' => [
             'name' => "Test oculaire",
-            'answer' => "#00ff00",
+            'answer' => "#0f0",
             'description' => "
                 Eh bien, nous pouvons enfin commencer {namingGame} !
                 <br><br>
