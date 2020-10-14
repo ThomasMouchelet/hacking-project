@@ -26,7 +26,7 @@ class StudentFixtures extends Fixture
         ],
         'student4' => [
             'firstName' => "Aymane",
-            'lastName' => "BENYAKLHEF",
+            'lastName' => "BENYAKHLEF",
         ],
         'student5' => [
             'firstName' => "Viktoriya",
